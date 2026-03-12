@@ -154,6 +154,21 @@ const scheduleAutoEvent = () => {
   }, delay);
 };
 
+// Carga eventos iniciales sin disparar toasts múltiples al arrancar.
+const seedEvents = (count = 4) => {
+  for (let i = 0; i < count; i += 1) {
+    const event = randomEvent();
+    state.eventsDB.push(event);
+    appendEvent(event);
+  }
+  updateMetrics();
+};
+
+const openFirstEventModal = () => {
+  const first = UI.eventList.querySelector('.event-card');
+  if (first) openModal(first);
+};
+
 const openModal = (card) => {
   UI.modalType.textContent = card.dataset.type;
   UI.modalMeta.textContent = card.dataset.meta;
@@ -231,6 +246,8 @@ const bindBaseListeners = () => {
 
 const init = () => {
   bindBaseListeners();
+  seedEvents(4);
+  openFirstEventModal();
   // Mostrar la vista en vivo por defecto al cargar la página.
   window.location.hash = 'live-view';
   scheduleAutoEvent();
