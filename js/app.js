@@ -164,11 +164,6 @@ const seedEvents = (count = 4) => {
   updateMetrics();
 };
 
-const openFirstEventModal = () => {
-  const first = UI.eventList.querySelector('.event-card');
-  if (first) openModal(first);
-};
-
 const openModal = (card) => {
   UI.modalType.textContent = card.dataset.type;
   UI.modalMeta.textContent = card.dataset.meta;
@@ -247,9 +242,6 @@ const bindBaseListeners = () => {
 const init = () => {
   bindBaseListeners();
   seedEvents(4);
-  openFirstEventModal();
-  // Mostrar la vista en vivo por defecto al cargar la página.
-  window.location.hash = 'live-view';
   scheduleAutoEvent();
 };
 
