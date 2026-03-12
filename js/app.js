@@ -231,6 +231,8 @@ const bindBaseListeners = () => {
 
 const init = () => {
   bindBaseListeners();
+  // Mostrar la vista en vivo por defecto al cargar la página.
+  window.location.hash = 'live-view';
   scheduleAutoEvent();
 };
 
