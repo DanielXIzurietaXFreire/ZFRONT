@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Videovigilancia IA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="app-shell">
+    <input type="radio" name="tab" id="tab-dashboard" checked>
+    <input type="radio" name="tab" id="tab-cameras">
+    <input type="radio" name="tab" id="tab-events">
+    <input type="radio" name="tab" id="tab-settings">
+
+    <div class="glass-frame">
+      <header class="topbar">
+        <div class="title-group">
+          <p class="eyebrow">Cooperativa Financiera</p>
+          <h1>Sistema de Videovigilancia IA</h1>
+        </div>
+        <div class="status-dot">●</div>
+      </header>
+
+      <main>
+        <section id="screen-dashboard" class="screen">
+          <div class="metrics">
+            <div class="metric-card">
+              <p class="label">Cámaras activas</p>
+              <p class="value">18</p>
+              <span class="pill pill-green">Operativas</span>
+            </div>
+            <div class="metric-card">
+              <p class="label">Eventos hoy</p>
+              <p class="value" id="events-count">0</p>
+              <span class="pill pill-cyan">Monitoreando</span>
+            </div>
+            <div class="metric-card">
+              <p class="label">Alertas críticas</p>
+              <p class="value" id="critical-count">0</p>
+              <span class="pill pill-red">Prioridad</span>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Feed en vivo</p>
+              <h2>Cámaras conectadas</h2>
+            </div>
+            <button class="ghost-btn live-link" data-live="Lobby Principal" aria-label="Ver todas las cámaras">Ver todas</button>
+          </div>
+
+          <div class="camera-grid">
+            <article class="camera-card active">
+              <div class="preview shimmer"></div>
+              <div class="camera-info">
+                <div>
+                  <p class="cam-name">Lobby Principal</p>
+                  <p class="cam-location">Edificio Central</p>
+                </div>
+                <span class="pill pill-green">Activa</span>
+              </div>
+            </article>
+            <article class="camera-card active">
+              <div class="preview shimmer"></div>
+              <div class="camera-info">
+                <div>
+                  <p class="cam-name">Cajeros 24/7</p>
+                  <p class="cam-location">Sucursal Norte</p>
+                </div>
+                <span class="pill pill-green">Activa</span>
+              </div>
+            </article>
+            <article class="camera-card offline">
+              <div class="preview"></div>
+              <div class="camera-info">
+                <div>
+                  <p class="cam-name">Bóveda</p>
+                  <p class="cam-location">Subsuelo</p>
+                </div>
+                <span class="pill pill-amber">Revisar</span>
+              </div>
+            </article>
+            <article class="camera-card active">
+              <div class="preview shimmer"></div>
+              <div class="camera-info">
+                <div>
+                  <p class="cam-name">Estacionamiento</p>
+                  <p class="cam-location">Patio Oeste</p>
+                </div>
+                <span class="pill pill-green">Activa</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="screen-cameras" class="screen">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Inventario</p>
+              <h2>Listado de cámaras</h2>
+            </div>
+            <button class="ghost-btn">Filtrar</button>
+          </div>
+
+          <div class="list">
+            <article class="list-item">
+              <div class="thumb shimmer"></div>
+              <div class="details">
+                <p class="cam-name">Acceso Principal</p>
+                <p class="cam-location">Planta Baja</p>
+                <span class="pill pill-green">En línea</span>
+              </div>
+              <button class="outline-btn live-link" data-live="Acceso Principal">Ver en vivo</button>
+            </article>
+            <article class="list-item">
+              <div class="thumb shimmer"></div>
+              <div class="details">
+                <p class="cam-name">Tesorería</p>
+                <p class="cam-location">Piso 2</p>
+                <span class="pill pill-amber">Inestable</span>
+              </div>
+              <button class="outline-btn live-link" data-live="Tesorería">Ver en vivo</button>
+            </article>
+            <article class="list-item">
+              <div class="thumb shimmer"></div>
+              <div class="details">
+                <p class="cam-name">Estacionamiento Sur</p>
+                <p class="cam-location">Exterior</p>
+                <span class="pill pill-green">En línea</span>
+              </div>
+              <button class="outline-btn live-link" data-live="Estacionamiento Sur">Ver en vivo</button>
+            </article>
+            <article class="list-item offline">
+              <div class="thumb"></div>
+              <div class="details">
+                <p class="cam-name">Archivo Histórico</p>
+                <p class="cam-location">Piso -1</p>
+                <span class="pill pill-red">Desconectada</span>
+              </div>
+              <button class="outline-btn">Reintentar</button>
+            </article>
+          </div>
+        </section>
+
+        <section id="screen-events" class="screen">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">IA Watchlist</p>
+              <h2>Eventos de interés</h2>
+            </div>
+            <button class="ghost-btn trigger-alert" aria-label="Simular alerta IA">Simular alerta</button>
+          </div>
+
+          <div class="event-list">
+            <div class="empty" id="events-empty">Sin eventos detectados aún.</div>
+          </div>
+        </section>
+
+        <section id="screen-settings" class="screen">
+          <div class="section-header">
+            <div>
+              <p class="eyebrow">Configuración</p>
+              <h2>Preferencias rápidas</h2>
+            </div>
+          </div>
+          <div class="settings">
+            <div class="setting-row">
+              <div>
+                <p class="cam-name">Notificaciones críticas</p>
+                <p class="cam-location">Vibración y luz de alerta</p>
+              </div>
+              <div class="toggle on" id="toggle-notif" role="button" aria-label="Alternar notificaciones"><span></span></div>
+            </div>
+            <div class="setting-row">
+              <div>
+                <p class="cam-name">Modo sigiloso</p>
+                <p class="cam-location">Silenciar sonidos del sistema</p>
+              </div>
+              <div class="toggle off" id="toggle-silent" role="button" aria-label="Alternar modo sigiloso"><span></span></div>
+            </div>
+            <div class="setting-row">
+              <div>
+                <p class="cam-name">Refresco de feed</p>
+                <p class="cam-location" id="refresh-label">Cada 5 segundos</p>
+              </div>
+              <div class="pill pill-cyan selectable" id="pill-refresh" role="button" aria-label="Cambiar frecuencia de refresco">Auto</div>
+            </div>
+            <div class="setting-row">
+              <div>
+                <p class="cam-name">Tema</p>
+                <p class="cam-location" id="theme-label">Neón oscuro</p>
+              </div>
+              <div class="pill pill-green selectable" id="pill-theme" role="button" aria-label="Cambiar tema">Activo</div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navegación principal">
+        <label for="tab-dashboard" class="nav-item" aria-label="Dashboard">
+          <span class="icon">🏠</span>
+          <span>Dashboard</span>
+        </label>
+        <label for="tab-cameras" class="nav-item" aria-label="Cámaras">
+          <span class="icon">📷</span>
+          <span>Cámaras</span>
+        </label>
+        <label for="tab-events" class="nav-item" aria-label="Eventos">
+          <span class="icon">🚨</span>
+          <span>Eventos</span>
+        </label>
+        <label for="tab-settings" class="nav-item" aria-label="Configuración">
+          <span class="icon">⚙️</span>
+          <span>Config</span>
+        </label>
+        <div class="glow-bar"></div>
+      </nav>
+    </div>
+  </div>
+
+  <div id="live-view" class="live-overlay">
+    <div class="live-card">
+      <div class="live-header">
+        <div>
+          <p class="eyebrow">Vista en vivo</p>
+          <h3 id="live-title">Lobby Principal</h3>
+          <p class="cam-location" id="live-location">Ubicación asignada</p>
+        </div>
+        <a class="ghost-btn small" href="#">Cerrar</a>
+      </div>
+      <div class="live-feed shimmer"></div>
+      <div class="live-meta">
+        <div class="meta-block">
+          <p class="label">Último evento</p>
+          <p class="value">Acceso 03:14</p>
+        </div>
+        <div class="meta-block">
+          <p class="label">Prioridad</p>
+          <span class="pill pill-red">Alta</span>
+        </div>
+        <div class="meta-block">
+          <p class="label">Cámara</p>
+          <p class="value" id="live-camera">#CAM-01</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="event-overlay" id="event-overlay">
+    <div class="event-card-modal">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">Validación rápida</p>
+          <h3 id="modal-type">Evento detectado</h3>
+          <p class="cam-location" id="modal-meta">Ubicación • Fecha • Hora</p>
+        </div>
+        <button class="ghost-btn small" id="modal-close" aria-label="Cerrar modal">Cerrar</button>
+      </div>
+      <div class="modal-tags">
+        <span class="pill pill-red" id="modal-priority">Prioridad</span>
+        <span class="pill pill-cyan" id="modal-camera">Cámara</span>
+      </div>
+      <div class="modal-actions">
+        <button class="outline-btn action-btn critical" id="btn-threat">Confirmar amenaza</button>
+        <button class="outline-btn action-btn safe" id="btn-false">Falso positivo</button>
+        <button class="outline-btn action-btn live" id="btn-live">Ver cámara</button>
+      </div>
+      <div class="modal-live" id="modal-live">
+        <div class="live-feed shimmer"></div>
+      </div>
+      <div class="modal-stats">
+        <span class="pill pill-red" id="count-threats">Amenazas: 0</span>
+        <span class="pill pill-green" id="count-false">Falsos positivos: 0</span>
+      </div>
+      <p class="modal-note">Selecciona una acción para registrar la evaluación del evento.</p>
+    </div>
+  </div>
+
+  <div class="toast" id="alert-toast" role="alert" aria-live="assertive">
+    <div class="toast-dot"></div>
+    <div>
+      <p class="toast-title">Alerta crítica detectada</p>
+      <p class="toast-body">Acceso no autorizado • Bóveda</p>
+    </div>
+  </div>
+
+  <audio id="alert-sound" preload="auto" aria-label="Alerta sonora">
+    <source src="data:audio/ogg;base64,T2dnUwACAAAAAAAAAABVDGspAAAAABYzHUEBHgF2b3JiaXMAAAAAAkSsAAAAAAAAgD0AAAAAAAC4AU9nZ1MAAAAAAAAAAAAAFUMaykEAAAAVMx1BAVcBX29yYmlzAAAAAAJEpAAAAAAAAMA9AAAAAAAAlwBTb3VuZCBCaXRlcwAAAAA=" type="audio/ogg">
+  </audio>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
